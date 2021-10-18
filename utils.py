@@ -1,29 +1,33 @@
 from vectors import *
 
 
+def adjust_accel_for_dt(acceleration: Vec2f, dt: float) -> Vec2f:
+	return Vec2f(acceleration.x * dt, acceleration.y * dt)
+
+
 def adjust_accel_by_quad(quadrant: int, acceleration: Vec2f) -> Vec2f:
-	if quadrant == 1:
+	if quadrant == 1:  # Top left
 		return acceleration
-	elif quadrant == 2:
+	elif quadrant == 2:  # Top right
 		return Vec2f(-acceleration.x, acceleration.y)
-	elif quadrant == 3:
+	elif quadrant == 3:  # Bottom right
 		return Vec2f(acceleration.x, -acceleration.y)
-	elif quadrant == 4:
+	elif quadrant == 4:  # Bottom left
 		return Vec2f(-acceleration.x, -acceleration.y)
-	elif quadrant == 5:
-		return Vec2f(0.0, -acceleration.y)
-	elif quadrant == 6:
+	elif quadrant == 5:  # Top middle
+		return Vec2f(0.0, acceleration.y)
+	elif quadrant == 6:  # Middle right
 		return Vec2f(-acceleration.x, 0.0)
-	elif quadrant == 7:
+	elif quadrant == 7:  # Bottom middle
 		return Vec2f(0.0, -acceleration.y)
-	else:
+	else:  # Middle left
 		return Vec2f(acceleration.x, 0.0)
 
 
 def adjust_pos_for_display(pos: Vec2f) -> Vec2i:
 	return pos.ret_as_int()
 
-
+# Function that requires use of delta time
 def calc_accel(force: float, mass: int, move_ratio: Vec2f) -> Vec2f:
 	acceleration: float
 
