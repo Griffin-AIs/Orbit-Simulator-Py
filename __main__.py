@@ -3,8 +3,7 @@ from objects import *
 from utils import *
 
 # Import Raylib
-from raylib import rl
-from raylib.colors import *
+from raylib import *
 
 # Constants
 GRAVITY = 2.0
